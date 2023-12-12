@@ -1,0 +1,218 @@
+Question
+
+a.	Write program to read and display digital image using MATLAB
+
+b.	Read and display image
+
+c.	Resize given image
+
+d.	Convert given color image into gray-scale image
+
+e.	Convert given color/gray-scale image into black & white image
+
+f.	Draw image profile
+
+g.	Separate color image in three R G & B planes
+
+h.	Create color image using R, G and B three separate planes
+
+Solution
+
+% This program will read an image and display it I = imread('sample_image.jpg'); imshow(I);
+
+% This function will read an image and display it function read_display_image(img_path) I = imread(img_path); imshow(I);
+
+end
+
+% This function will resize a given image function resized_image = resize_image(img, scale) [img_rows, img_cols, img_channels] = size(img); new_size = [scale*img_rows, scale*img_cols]; resized_image = imresize(img, new_size);
+
+end
+
+% This function will convert a color image into gray-scale image function gray_scale_image = rgb2gray_image(img)
+
+gray_scale_image = rgb2gray(img); end
+
+% This function will convert a color/gray-scale image into black & white image function bw_image = image2bw_image(img)
+
+bw_image = im2bw(img);
+
+end
+
+% This function will draw the image profile function profile_plot = draw_image_profile(img) % Reshape image to 1D array img_1D = img(:);
+
+% Compute image profile profile = mean(img_1D);
+
+% Create profile plot
+
+figure; plot(profile); title('Image Profile'); xlabel('Column Index'); ylabel('Pixel Intensity'); profile_plot = gca;
+
+end
+
+% This function will separate a color image into three R G & B planes function [R, G, B] = separate_rgb_planes(img)
+
+R = img(:,:,1);
+
+G = img(:,:,2);
+
+B = img(:,:,3); end
+
+% This function will create a color image using R, G and B three separate planes function color_image = create_color_image(R, G, B)
+
+color_image = cat(3, R, G, B);
+
+end
+
+___________
+
+___________ Question using MATLAB write programs for
+
+a.	image restoration
+
+b.	Remove Salt and Pepper Noise
+
+c.	Minimize Gaussian noise
+
+d.	Median filter
+
+Solution
+
+% Noisy image
+
+I = imread('noisy_image.jpg');
+
+% Blurred image
+
+B = imfilter(I, fspecial('gaussian', [3 3], 2));
+
+% Estimate the blur kernel
+
+K = imfilter(B, fspecial('gaussian', [3 3], 2), 2);
+
+% Restored image
+
+O = irfilter(I, K, 2);
+
+% Display the restored image imshow(O);
+
+% Load the image
+
+I = imread('image.jpg');
+
+% Apply median filter J = medfilt2(I);
+
+% Display the filtered image imshow(J);
+
+% Load the image
+
+I	= imread('image.jpg');
+
+% Apply Gaussian filter
+
+J	= imfilter(I, fspecial('gaussian', [3 3], 2));
+
+% Display the filtered image imshow(J);
+
+% Load the image
+
+I = imread('image.jpg');
+
+% Apply median filter J = medfilt2(I);
+
+% Display the filtered image imshow(J);
+
+____________
+
+_____________
+
+Question
+
+To write and execute programs for image arithmetic operations a. Addition of two images
+
+b.	Subtract one image from other image
+
+c.	Calculate mean value of image
+
+Solution
+
+img1 = imread('image1.jpg'); % read the first image img2 = imread('image2.jpg'); % read the second image
+
+% convert the images to the same size and depth img1 = imresize(img1, [size(img2, 1), size(img2, 2)]); img1 = im2double(img1);
+
+img2 = imresize(img2, [size(img1, 1), size(img1, 2)]); img2 = im2double(img2);
+
+% add the two images result_img = imadd(img1, img2);
+
+% display the result imshow(result_img); ___ img1 = imread('image1.jpg'); % read the first image img2 = imread('image2.jpg'); % read the second image % convert the images to the same size and depth img1 = imresize(img1, [size(img2, 1), size(img2, 2)]); img1 = im2double(img1);
+
+img2 = imresize(img2, [size(img1, 1), size(img1, 2)]); img2 = im2double(img2);
+
+% subtract the second image from the first image result_img = imsubtract(img1, img2);
+
+% display the result imshow(result_img); ___ img = imread('image1.jpg'); % read the image
+
+% convert the image to grayscale if it's in color if size(img, 3) == 3
+
+img = rgb2gray(img);
+
+end
+
+% calculate the mean value mean_value = mean(mean(img));
+
+% display the result disp(['The mean value of the image is: ', num2str(mean_value)]);
+
+____________
+
+____________
+
+Question
+
+To write and execute programs for image logical operations a. AND operation between two images
+
+b.	OR operation between two images
+
+c.	Calculate intersection of two images
+
+d.	NOT operation (Negative image)
+
+Solution
+
+% Load the images
+
+img1 = imread('image1.jpg');
+
+img2 = imread('image2.jpg');
+
+% Perform AND operation result = img1 & img2;
+
+% Display the result imshow(result);
+
+____
+
+% Load the images
+
+img1 = imread('image1.jpg'); img2 = imread('image2.jpg');
+
+% Perform OR operation result = img1 | img2;
+
+% Display the result imshow(result);
+
+___
+
+% Load the images
+
+img1 = imread('image1.jpg'); img2 = imread('image2.jpg');
+
+% Calculate intersection result = img1 & img2;
+
+% Display the result imshow(result);
+
+____
+
+% Load an image
+
+img = imread('image.jpg');
+
+% Perform NOT operation result = ~img;
+
+% Display the result imshow(result);
+
